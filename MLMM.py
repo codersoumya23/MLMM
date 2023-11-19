@@ -33,18 +33,17 @@ def process_json(data):
 
         # Convert substrings to integers
         lists = list(map(int, substrings))
-        print(type(lists))
-        print(lists)
+
         sublist=sublists(lists)
-        print(sublist)
+
         sums_per_list = [sum(int(x) for x in inner_list if str(x).isdigit()) for inner_list in sublist]
         #unique=list(set(sums_per_list))
-        print(sums_per_list)
+
         ctr=0
         for i in range(len(sums_per_list)):
             if sums_per_list[i]<cutoff:
                 ctr+=1
-        print(ctr)
+
         all_list.append(ctr)
 
     return all_list
