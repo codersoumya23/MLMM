@@ -4,15 +4,23 @@ from flask import Flask, request, jsonify
 
 
 app = Flask(__name__)
-def sublists(lst):
-    n = len(lst)
-    sublists = []
+def sublists(L,L2=None):
+    if L2==None:
+        L2 = L[:-1]
+    if L==[]:
+        if L2==[]:
+            return []
+        return sublists(L2,L2[:-1])
+    return [L]+sublists(L[1:],L2)
+    #sublists=[L[i:i+j] for i in range(0,len(L)) for j in range(1,len(L)-i+1)]
+    # n = len(lst)
+    # sublists = []
 
-    for start in range(n):
-        for end in range(start + 1, n + 1):
-            sublists.append(lst[start:end])
+    # for start in range(n):
+    #     for end in range(start + 1, n + 1):
+    #         sublists.append(lst[start:end])
 
-    return sublists
+    # return sublists
 
 # Your existing JSON processing function
 def process_json(data):
@@ -29,17 +37,16 @@ def process_json(data):
         sublist=sublists(lists)
         print(sublist)
         sums_per_list = [sum(int(x) for x in inner_list if str(x).isdigit()) for inner_list in sublist]
-        unique=list(set(sums_per_list))
-        print(unique)
+        #unique=list(set(sums_per_list))
+        print(sums_per_list)
         ctr=0
-        for i in range(len(unique)):
-            if unique[i]<cutoff:
+        for i in range(len(sums_per_list)):
+            if sums_per_list[i]<cutoff:
                 ctr+=1
         print(ctr)
         all_list.append(ctr)
 
     return all_list
-
 
 # Expose a POST endpoint /time-intervals
 @app.route('/mlmm-program', methods=['POST'])
