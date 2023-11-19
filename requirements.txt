@@ -1,4 +1,4 @@
 
-Flask==3.0.0
+Flask==2.0.1
 virtualenv==20.24.6
 zipp==3.17.0

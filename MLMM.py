@@ -29,10 +29,11 @@ def process_json(data):
         sublist=sublists(lists)
         print(sublist)
         sums_per_list = [sum(int(x) for x in inner_list if str(x).isdigit()) for inner_list in sublist]
-        print(sums_per_list)
+        unique=list(set(sums_per_list))
+        print(unique)
         ctr=0
-        for i in range(len(sums_per_list)):
-            if sums_per_list[i]<cutoff:
+        for i in range(len(unique)):
+            if unique[i]<cutoff:
                 ctr+=1
         print(ctr)
         all_list.append(ctr)
