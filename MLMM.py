@@ -7,6 +7,7 @@ app = Flask(__name__)
 def sublists(L,L2=None):
     if L2==None:
         L2 = L[:-1]
+
     if L==[]:
         if L2==[]:
             return []
